@@ -45,11 +45,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # lib
+    'allauth',
+    'allauth.account',
+
     # apps
     'authentication',
 ]
 
 MIDDLEWARE = [
+    # std
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -57,6 +62,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # lib
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -133,4 +141,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Auth settings
 
+# Custom user model
 AUTH_USER_MODEL = 'authentication.User'
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin
+    'django.contrib.auth.backends.ModelBackend',
+
+    # Allauth-specific authentication methods
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
