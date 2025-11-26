@@ -139,9 +139,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
 # Auth settings
 
-# Custom user model
 AUTH_USER_MODEL = 'authentication.User'
 
 AUTHENTICATION_BACKENDS = [
@@ -151,3 +151,12 @@ AUTHENTICATION_BACKENDS = [
     # Allauth-specific authentication methods
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+
+# Allauth settings
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1', 'password2']
+
+ACCOUNT_LOGIN_METHODS = ['email']
