@@ -1,15 +1,10 @@
-from django.shortcuts import render
 from django.views import View
-from django.views.generic import TemplateView
+from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Project
+from ..models import Project
 
 
-class Dashboard(TemplateView):
-    template_name = 'workspace/dashboard.html'
-
-
-class PartialProjects(LoginRequiredMixin, View):
+class Projects(LoginRequiredMixin, View):
     template_name = 'workspace/partials/projects.html'
 
     def get(self, request):
