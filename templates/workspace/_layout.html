@@ -16,9 +16,11 @@
 </head>
 <body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
     {% block navbar %}
-    {% include 'workspace/components/navbar.html' %}
+        {% include 'workspace/components/navbar.html' %}
     {% endblock %}
 
-    {% block content %} {% endblock %}
+    <main class="container mt-3">
+        {% block content %} {% endblock %}
+    </main>
 </body>
 </html>

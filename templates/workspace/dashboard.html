@@ -1,1 +1,11 @@
 {% extends 'workspace/_layout.html' %}
+
+{% block content %}
+    <div
+        id="projects-container"
+        hx-get="{% url 'workspace:partial_projects' %}" 
+        hx-trigger="load"
+        hx-swap="innerHTML"
+    >
+    </div>
+{% endblock %}
