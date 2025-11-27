@@ -169,3 +169,12 @@ ACCOUNT_LOGIN_METHODS = ['email']
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+# URLs for redirects
+
+LOGIN_URL = 'account_login'
+
+LOGIN_REDIRECT_URL = 'workspace:index'
+
+LOGOUT_REDIRECT_URL = 'account_login'
