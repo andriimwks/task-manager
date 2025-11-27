@@ -5,6 +5,7 @@ from ..models import Project
 
 
 class Projects(LoginRequiredMixin, View):
+    """Renders a partial template, displaying a list of projects created by the user."""
     template_name = 'workspace/partials/projects.html'
 
     def get(self, request):
