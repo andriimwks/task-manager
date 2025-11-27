@@ -1,4 +1,5 @@
 {% load static %}
+{% load django_htmx %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +11,10 @@
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <script src="{% static 'js/bootstrap.bundle.min.js' %}" defer></script>
+
+    {% htmx_script %}
 </head>
-<body>
+<body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
     {% block navbar %}
     {% include 'workspace/components/navbar.html' %}
     {% endblock %}

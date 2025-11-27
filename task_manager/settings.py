@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # lib
     'allauth',
     'allauth.account',
+    'django_htmx',
 
     # apps
     'authentication',
@@ -66,6 +67,7 @@ MIDDLEWARE = [
 
     # lib
     'allauth.account.middleware.AccountMiddleware',
+    'django_htmx.middleware.HtmxMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
