@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'workspace:dashboard' %}">Task Manager</a>
         <div class="d-flex">
-            {{ request.user.email }}
+            {{ request.user.mask_email }}
         </div>
     </div>
 </nav>
