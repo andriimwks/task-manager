@@ -73,7 +73,9 @@ ROOT_URLCONF = 'task_manager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -175,6 +177,6 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_URL = 'account_login'
 
-LOGIN_REDIRECT_URL = 'workspace:index'
+LOGIN_REDIRECT_URL = 'workspace:dashboard'
 
 LOGOUT_REDIRECT_URL = 'account_login'

@@ -4,5 +4,5 @@ from .views import *
 
 app_name = 'workspace'
 urlpatterns = [
-    path('', Index.as_view(), name='index')
+    path('', Dashboard.as_view(), name='dashboard')
 ]
