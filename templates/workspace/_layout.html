@@ -12,8 +12,8 @@
     <script src="{% static 'js/bootstrap.bundle.min.js' %}" defer></script>
 </head>
 <body>
-    {% block header %}
-    {% comment %} TODO: Add header {% endcomment %}
+    {% block navbar %}
+    {% include 'workspace/components/navbar.html' %}
     {% endblock %}
 
     {% block content %} {% endblock %}
