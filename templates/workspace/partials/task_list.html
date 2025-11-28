@@ -1,6 +1,27 @@
 {% for task in tasks %}
     <tr>
         <td>
+            {% if task.priority == 'low' %}
+                <span class="text-success">
+                    <i class="fa-solid fa-angle-down"></i>
+                </span>
+            {% elif task.priority == 'normal' %}
+                <span class="text-primary">
+                    <i class="fa-solid fa-minus"></i>
+                </span>
+            {% elif task.priority == 'high' %}
+                <span class="text-warning">
+                    <i class="fa-solid fa-angle-up"></i>
+                </span>
+            {% elif task.priority == 'critical' %}
+                <span class="text-danger">
+                    <i class="fa-solid fa-angles-up"></i>
+                </span>
+            {% else %}
+                haha
+            {% endif %}
+        </td>
+        <td>
             <input type="checkbox" name="" id="" {% if task.completed %} checked {% endif %}>
         </td>
         <td>{{ task.name }}</td>

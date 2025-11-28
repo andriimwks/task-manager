@@ -1,5 +1,3 @@
-{% load static %}
-
 {% for project in projects %}
     <div class="col" data-project-id="{{ project.pk }}">
         <div class="card rounded-bottom-4 shadow-sm" x-data="{ project_name: '{{ project.name }}', edit: false }">
@@ -69,12 +67,9 @@
             </div>
 
             <div class="card-body p-0">
-                <!-- <div class="text-center htmx-indicator" id="tasks-loading-indicator">
-                    <img src="{% static 'svg/puff.svg' %}" alt="" style="width: 48px;">
-                </div> -->
-
                 <table class="table table-borderless table-hover">
                     <colgroup>
+                        <col style="width: 1%;">
                         <col style="width: 1%;">
                         <col>
                         <col style="width: 1%;">
@@ -84,7 +79,6 @@
                         hx-get="{% url 'workspace:partial_task_list' project.pk %}" 
                         hx-trigger="load"
                         hx-swap="innerHTML"
-                        hx-indicator="#tasks-loading-indicator"
                     >
                     </tbody>
                 </table>
