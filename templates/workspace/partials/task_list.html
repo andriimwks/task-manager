@@ -1,24 +1,26 @@
 {% for task in tasks %}
     <tr>
         <td>
-            {% if task.priority == 'low' %}
+            {% if task.priority == 0 %}
                 <span class="text-success">
                     <i class="fa-solid fa-angle-down"></i>
                 </span>
-            {% elif task.priority == 'normal' %}
+            {% elif task.priority == 1 %}
                 <span class="text-primary">
                     <i class="fa-solid fa-minus"></i>
                 </span>
-            {% elif task.priority == 'high' %}
+            {% elif task.priority == 2 %}
                 <span class="text-warning">
                     <i class="fa-solid fa-angle-up"></i>
                 </span>
-            {% elif task.priority == 'critical' %}
+            {% elif task.priority == 3 %}
                 <span class="text-danger">
                     <i class="fa-solid fa-angles-up"></i>
                 </span>
             {% else %}
-                haha
+                <span class="text-secondary">
+                    <i class="fa-solid fa-question"></i>
+                </span>
             {% endif %}
         </td>
         <td>
