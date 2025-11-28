@@ -6,7 +6,7 @@ User = get_user_model()
 
 
 class Project(models.Model):
-    """Basic project model. Used primarily to separate task into \"groups\"."""
+    """Represents a project, which serves as a grouping for tasks."""
 
     name = models.CharField('Name', max_length=255)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='projects')
@@ -17,3 +17,19 @@ class Project(models.Model):
     class Meta:
         verbose_name = 'Project'
         verbose_name_plural = 'Projects'
+
+
+class Task(models.Model):
+    """Represents a task associated with a specific project."""
+
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
+    name = models.CharField('Name', max_length=255)
+    priority = models.PositiveIntegerField('Priority', default=0)
+    completed = models.BooleanField('Completed', default=False)
+    deadline = models.DateField('Deadline', null=True, blank=True)
+
+
+    class Meta:
+        ordering = ('priority',)
+        verbose_name = 'Task'
+        verbose_name_plural = 'Tasks'
