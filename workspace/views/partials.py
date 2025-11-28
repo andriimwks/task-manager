@@ -5,7 +5,7 @@ from ..mixins import HtmxRequiredMixin
 
 
 class ProjectList(LoginRequiredMixin, HtmxRequiredMixin, View):
-    """Renders a partial template, displaying a list of projects created by the user."""
+    """Renders a partial template containing the list of projects created by the user."""
     template_name = 'workspace/partials/project_list.html'
 
     def get(self, request):

@@ -7,7 +7,7 @@ class AddProjectForm(forms.Form):
 
 
 class EditProjectForm(forms.Form):
-    """Form for editing a name of an existing project."""
+    """Form for editing the name of an existing project."""
     project_id = forms.IntegerField(required=True)
     project_name = forms.CharField(max_length=255, min_length=3, required=True)
 

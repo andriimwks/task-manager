@@ -8,7 +8,7 @@ from ..mixins import HtmxRequiredMixin
 
 
 class AddProject(LoginRequiredMixin, View):
-    """A view for creating a new project."""
+    """Handles creation of a new project."""
 
     template_name = 'workspace/add_project.html'
 
@@ -25,6 +25,8 @@ class AddProject(LoginRequiredMixin, View):
 
 
 class EditProject(LoginRequiredMixin, HtmxRequiredMixin, View):
+    """Handles editing an existing project's name via HTMX."""
+
     def post(self, request):
         form = EditProjectForm(request.POST)
         if form.is_valid():
@@ -41,6 +43,8 @@ class EditProject(LoginRequiredMixin, HtmxRequiredMixin, View):
 
 
 class DeleteProject(LoginRequiredMixin, HtmxRequiredMixin, View):
+    """Handles deletion of a project via HTMX."""
+
     def delete(self, request):
         form = DeleteProjectForm(request.GET)
         if form.is_valid():
