@@ -4,29 +4,24 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound, HttpResponseBadRequest, HttpResponse
 from ..models import Project, Task
 from ..forms import CreateTaskForm
-from ..mixins import HtmxRequiredMixin
+from ..mixins import HtmxRequiredMixin, ProjectRequiredMixin, TaskRequiredMixin
 
 
-class CreateTask(LoginRequiredMixin, HtmxRequiredMixin, View):
-    def post(self, request, project_id: int):
-        project = Project.objects.filter(pk=project_id, created_by=request.user).first()
-        if not project:
-            return HttpResponseNotFound('Project not found')
-        
+class CreateTask(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, View):
+    """Creates a new task within the specified project."""
+
+    def post(self, request):       
         form = CreateTaskForm(request.POST)
-        if form.is_valid():
-            Task.objects.create(name=form.cleaned_data['task_name'], project=project)
-            return redirect('workspace:partial_task_list', project_id=project_id)
+        if not form.is_valid():
+            return HttpResponseBadRequest('Bad request')
+
+        Task.objects.create(name=form.cleaned_data['task_name'], project=request.project)
+        return redirect('workspace:partial_task_list', project_id=request.project.pk)
         
-        return HttpResponseBadRequest('Bad request')
 
+class DeleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, View):
+    """Deletes the specified task."""
 
-class DeleteTask(LoginRequiredMixin, HtmxRequiredMixin, View):
-    def delete(self, request, project_id: int, task_id: int):
-        task = Task.objects.filter(pk=task_id, project__pk=project_id, project__created_by=request.user).first()
-        if not task:
-            return HttpResponseNotFound('Task not found')
-        
-        task.delete()
-
+    def delete(self, request):        
+        request.task.delete()
         return HttpResponse('Task was deleted', status=200)
