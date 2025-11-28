@@ -5,5 +5,64 @@
 {% endblock %}
 
 {% block content %}
+    <div class="row justify-content-lg-center">
+        <div class="col-12 col-lg-6">
+            <div class="border rounded-3 shadow-lg p-3 mx-sm-1">
+                <h4 class="mb-3">
+                    <i class="fa-solid fa-pen"></i> Edit {{ task.name }}
+                </h4>
 
+                {% if form %}
+                    <ul class="list-group list-group-flush border border-danger border-1 rounded mb-3">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li class="list-group-item">{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <form
+                    hx-boost="true"
+                    action=""
+                    method="post"
+                    x-data="{ task_name: '{% if form %}{{ form.data.task_name }}{% else %}{{ task.name }}{% endif %}' }"
+                >
+                    <div class="mb-3">
+                        <label for="task_name" class="form-label">Task name</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="task_name"
+                            name="task_name"
+                            placeholder="Task name"
+                            minlength="3"
+                            maxlength="255"
+                            required
+                            x-model="task_name"
+                        >
+                    </div>
+                    <div class="mb-3">
+                        <label for="priority" class="form-label">Priority</label>
+                        <select class="form-select" id="priority" name="priority">
+                            {% for value, label in priority_choices %}
+                                <option value="{{ value }}" {% if value == task.priority %} selected {% endif %}>{{ label }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>   
+                    <div class="form-check mb-3">
+                        <input type="checkbox" class="form-check-input" id="completed" name="completed" value="">
+                        <label for="completed" class="form-check-label">
+                            Completed
+                        </label>
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success fw-semibold" :disabled="task_name.length < 3 || task_name.length > 255">
+                            <i class="fa-solid fa-floppy-disk"></i> Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock %}

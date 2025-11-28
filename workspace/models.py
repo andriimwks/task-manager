@@ -34,7 +34,6 @@ class Task(models.Model):
     completed = models.BooleanField('Completed', default=False)
     deadline = models.DateField('Deadline', null=True, blank=True)
 
-
     class Meta:
         ordering = ('-priority',)
         verbose_name = 'Task'

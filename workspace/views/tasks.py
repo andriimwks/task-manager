@@ -20,10 +20,19 @@ class CreateTask(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, Vi
 
 
 class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
+    """Displays a form for updating a specific task."""
+
     template_name = 'workspace/update_task.html'
 
     def get(self, request):
-        return render(request, self.template_name, {'task': request.task})
+        return render(
+            request,
+            self.template_name,
+            {
+                'task': request.task,
+                'priority_choices': Task.Priorities.choices,
+            },
+        )
 
 
 class DeleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, View):
