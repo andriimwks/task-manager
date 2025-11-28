@@ -8,5 +8,5 @@ app_name = 'workspace'
 urlpatterns = [
     path('', main.Dashboard.as_view(), name='dashboard'),
     path('add-project/', projects.AddProject.as_view(), name='add_project'),
-    path('partial/projects', partials.Projects.as_view(), name='partial_projects'),
+    path('partial/project-list', partials.ProjectList.as_view(), name='partial_project_list'),
 ]
