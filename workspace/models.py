@@ -22,9 +22,15 @@ class Project(models.Model):
 class Task(models.Model):
     """Represents a task associated with a specific project."""
 
+    class Priorities(models.TextChoices):
+        LOW      = 'low', 'Low'
+        NORMAL   = 'normal', 'Normal'
+        HIGH     = 'high', 'High'
+        CRITICAL = 'critical', 'Critical'
+
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='tasks')
     name = models.CharField('Name', max_length=255)
-    priority = models.PositiveIntegerField('Priority', default=0)
+    priority = models.TextField('Priority', default=Priorities.NORMAL, choices=Priorities.choices)
     completed = models.BooleanField('Completed', default=False)
     deadline = models.DateField('Deadline', null=True, blank=True)
 
