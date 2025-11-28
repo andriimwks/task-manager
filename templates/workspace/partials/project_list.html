@@ -1,54 +1,50 @@
 {% for project in projects %}
     <div class="col">
         <div class="card rounded-bottom-4 shadow-sm" x-data="{ project_name: '{{ project.name }}', edit: false }">
-            <template x-if="!edit">
-                <div class="card-header d-flex text-bg-primary rounded-top" style="height: 56px;">
-                    <h4 class="my-auto me-auto">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <span x-text="project_name"></span>
-                    </h4>
-                    <a class="link-body-emphasis text-decoration-none my-auto" x-on:click="edit = true">
-                        <i class="fa-solid fa-pen"></i>
-                    </a>
-                </div>
-            </template>
+            <div x-show.important="!edit" class="card-header d-flex text-bg-primary rounded-top" style="height: 56px;">
+                <h4 class="my-auto me-auto">
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <span x-text="project_name"></span>
+                </h4>
+                <a class="link-body-emphasis text-decoration-none my-auto" x-on:click="edit = true">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+            </div>
 
-            <template x-if="edit">
-                <div class="card-header d-flex" style="height: 56px;">
-                    <form class="w-100 me-1" action="" method="post">
-                        <input type="hidden" name="project_id" value="{{ project.pk }}">
-                        <div class="input-group" x-data="{ new_project_name: project_name, can_save: false }">
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="project_name"
-                                name="project_name"
-                                minlength="3"
-                                maxlength="255"
-                                required
-                                x-model="new_project_name"
-                                x-on:change="can_save = true"
-                            >
-                            <button
-                                type="button"
-                                class="btn btn-success"
-                                :disabled="can_save === false || new_project_name.length < 3 || new_project_name.length > 255"
-                                x-on:click="project_name = new_project_name; edit = false"
-                            >
-                                <i class="fa-solid fa-floppy-disk"></i>
-                            </button>
-                        </div>
-                    </form>
-                    
-                    <button type="button" class="btn btn-danger me-1">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
+            <div x-show.important="edit" class="card-header d-flex" style="height: 56px;">
+                <form class="w-100 me-1" hx-post="{% url 'workspace:edit_project' %}" hx-swap="none">
+                    <input type="hidden" name="project_id" value="{{ project.pk }}">
+                    <div class="input-group" x-data="{ new_project_name: project_name }">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="project_name"
+                            name="project_name"
+                            minlength="3"
+                            maxlength="255"
+                            required
+                            x-model="new_project_name"
+                            x-on:change="can_save = true"
+                        >
+                        <button
+                            type="submit"
+                            class="btn btn-success"
+                            :disabled="new_project_name === project_name ||  new_project_name.length < 3 || new_project_name.length > 255"
+                            x-on:htmx:after-request.window="project_name = new_project_name; edit = false"
+                        >
+                            <i class="fa-solid fa-floppy-disk"></i>
+                        </button>
+                    </div>
+                </form>
+                
+                <button type="button" class="btn btn-danger me-1">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
 
-                    <button type="button" class="btn btn-secondary" x-on:click="edit = false">
-                        <i class="fa-solid fa-ban"></i>
-                    </button>
-                </div>
-            </template>
+                <button type="button" class="btn btn-secondary" x-on:click="edit = false">
+                    <i class="fa-solid fa-ban"></i>
+                </button>
+            </div>
 
             {% comment %}
                 It was the easiest workaround I could think of.
