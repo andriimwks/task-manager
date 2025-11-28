@@ -14,6 +14,8 @@ class ProjectList(LoginRequiredMixin, HtmxRequiredMixin, View):
 
 
 class TaskList(LoginRequiredMixin, HtmxRequiredMixin, View):
+    """Renders a partial template containing the list of tasks belonging to the given project."""
+
     template_name = 'workspace/partials/task_list.html'
 
     def get(self, request, project_id: int):
