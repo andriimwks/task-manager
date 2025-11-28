@@ -26,7 +26,25 @@
         <td>
             <input type="checkbox" name="" id="" {% if task.completed %} checked {% endif %}>
         </td>
-        <td>{{ task.name }}</td>
-        <td></td>
+        <td>
+            {{ task.name }}
+        </td>
+        <td class="d-flex">
+            <button type="button" class="btn btn-sm btn-link link-body-emphasis">
+                <i class="fa-solid fa-hourglass"></i>
+            </button>
+
+            <div class="vr"></div>
+
+            <button type="button" class="btn btn-sm btn-link link-body-emphasis">
+                <i class="fa-solid fa-pen"></i>
+            </button>
+
+            <div class="vr"></div>
+
+            <button type="button" class="btn btn-sm btn-link link-body-emphasis">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </td>
     </tr>
 {% endfor %}
