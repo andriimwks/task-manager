@@ -12,8 +12,7 @@
             </div>
 
             <div x-show.important="edit" class="card-header d-flex" style="height: 56px;">
-                <form class="w-100 me-1" hx-post="{% url 'workspace:edit_project' %}" hx-swap="none">
-                    <input type="hidden" name="project_id" value="{{ project.pk }}">
+                <form class="w-100 me-1" hx-post="{% url 'workspace:update_project' project.pk %}" hx-swap="none">
                     <div class="input-group" x-data="{ new_project_name: project_name }">
                         <input
                             type="text"
@@ -37,12 +36,15 @@
                     </div>
                 </form>
                 
-                <form class="me-1" hx-delete="{% url 'workspace:delete_project' %}" hx-target="[data-project-id='{{ project.pk }}']" hx-swap="delete">
-                    <input type="hidden" name="project_id" value="{{ project.pk }}">
-                    <button type="submit" class="btn btn-danger">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </form>
+                <button
+                    type="submit"
+                    class="btn btn-danger me-1"
+                    hx-delete="{% url 'workspace:delete_project' project.pk %}"
+                    hx-target="[data-project-id='{{ project.pk }}']"
+                    hx-swap="delete"
+                >
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
 
                 <button type="button" class="btn btn-secondary" x-on:click="edit = false">
                     <i class="fa-solid fa-ban"></i>
