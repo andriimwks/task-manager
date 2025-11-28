@@ -1,5 +1,5 @@
 from django.views import View
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound, HttpResponseBadRequest, HttpResponse
 from ..models import Project, Task
@@ -8,8 +8,6 @@ from ..mixins import HtmxRequiredMixin
 
 
 class CreateTask(LoginRequiredMixin, HtmxRequiredMixin, View):
-    template_name = 'workspace/partials/task_list.html'
-
     def post(self, request, project_id: int):
         project = Project.objects.filter(pk=project_id, created_by=request.user).first()
         if not project:

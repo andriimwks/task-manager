@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound, HttpResponseBadRequest, HttpResponse
 from ..models import Project
 from ..forms import CreateProjectForm, UpdateProjectForm
-from ..mixins import HtmxRequiredMixin
+from ..mixins import HtmxRequiredMixin, ProjectRequiredMixin
 
 
 class CreateProject(LoginRequiredMixin, View):
@@ -24,16 +24,13 @@ class CreateProject(LoginRequiredMixin, View):
         return render(request, self.template_name, {'form': form})
 
 
-class UpdateProject(LoginRequiredMixin, HtmxRequiredMixin, View):
+class UpdateProject(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, View):
     """Handles editing an existing project's name via HTMX."""
 
-    def post(self, request, id: int):
+    def post(self, request):
         form = UpdateProjectForm(request.POST)
         if form.is_valid():
-            project = Project.objects.filter(pk=id, created_by=request.user).first()
-            if not project:
-                return HttpResponseNotFound('Project not found')
-            
+            project = request.project
             project.name = form.cleaned_data['project_name']
             project.save()
 
@@ -42,14 +39,9 @@ class UpdateProject(LoginRequiredMixin, HtmxRequiredMixin, View):
         return HttpResponseBadRequest('Bad request')
 
 
-class DeleteProject(LoginRequiredMixin, HtmxRequiredMixin, View):
+class DeleteProject(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, View):
     """Handles deletion of a project via HTMX."""
 
-    def delete(self, request, id: int):
-        project = Project.objects.filter(pk=id, created_by=request.user).first()
-        if not project:
-            return HttpResponseNotFound('Project not found')
-        
-        project.delete()
-
+    def delete(self, request):
+        request.project.delete()
         return HttpResponse('Project was deleted', status=200)
