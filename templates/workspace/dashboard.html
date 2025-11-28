@@ -1,5 +1,7 @@
 {% extends 'workspace/_layout.html' %}
 
+{% load static %}
+
 {% block title %}
     Workspace | {{ block.super }}
 {% endblock %}
@@ -13,6 +15,9 @@
         hx-trigger="load"
         hx-swap="innerHTML"
     >
+        <div class="col-auto text-center htmx-indicator">
+            <img src="{% static 'svg/puff.svg' %}" alt="" style="width: 128px;">
+        </div>
     </div>
 
     <div class="text-center mt-3" hx-boost="true">
