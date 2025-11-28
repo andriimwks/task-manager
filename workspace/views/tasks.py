@@ -1,5 +1,5 @@
 from django.views import View
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound, HttpResponseBadRequest, HttpResponse
 from ..models import Project, Task
@@ -17,7 +17,14 @@ class CreateTask(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, Vi
 
         Task.objects.create(name=form.cleaned_data['task_name'], project=request.project)
         return redirect('workspace:partial_task_list', project_id=request.project.pk)
-        
+
+
+class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
+    template_name = 'workspace/update_task.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'task': request.task})
+
 
 class DeleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, View):
     """Deletes the specified task."""
