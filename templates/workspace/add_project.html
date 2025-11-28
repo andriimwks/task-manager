@@ -22,13 +22,12 @@
                 </ul>
                 {% endif %}
 
-                <form hx-boost="true" action="" method="post" x-data="{ project_name: '' }">
+                <form hx-boost="true" action="" method="post" x-data="{ project_name: '{{ form.data.project_name }}' }">
                     <input
                         type="text"
                         class="form-control mb-3"
                         id="project_name"
                         name="project_name"
-                        value="{{ form.data.project_name }}"
                         placeholder="Project name"
                         minlength="3"
                         maxlength="255"
