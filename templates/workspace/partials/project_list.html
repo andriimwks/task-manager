@@ -51,19 +51,25 @@
                 </button>
             </div>
 
-            {% comment %}
-                It was the easiest workaround I could think of.
-                Bootstrap places some weird margins/paddings between header and body,
-                but the second header works just like I want, so I'll stick to it. =)
-            {% endcomment %}
             <div class="card-header">
-                <div class="input-group">
-                    <span class="input-group-text text-secondary">
-                        <i class="fa-solid fa-square-plus"></i>
-                    </span>
-                    <input type="text" class="form-control" placeholder="Start typing here to create a task...">
-                    <button type="button" class="btn btn-success">Add Task</button>
-                </div>
+                <form hx-post="{% url 'workspace:create_task' project.pk %}" hx-target="#tasks-container" hx-swap="innerHTML">
+                    <div class="input-group">
+                        <span class="input-group-text text-secondary">
+                            <i class="fa-solid fa-square-plus"></i>
+                        </span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="task_name"
+                            name="task_name"
+                            placeholder="Start typing here to create a task..."
+                            minlength="3"
+                            maxlength="255"
+                            required
+                        >
+                        <button type="submit" class="btn btn-success">Add Task</button>
+                    </div>
+                </form>
             </div>
 
             <div class="card-body p-0">
