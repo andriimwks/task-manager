@@ -3,6 +3,7 @@
 {% block content %}
     <div
         id="projects-container"
+        class="row row-cols-1 row-cols-lg-2 g-3 justify-content-lg-center"
         hx-get="{% url 'workspace:partial_projects' %}" 
         hx-trigger="load"
         hx-swap="innerHTML"
