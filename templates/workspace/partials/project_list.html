@@ -1,5 +1,5 @@
 {% for project in projects %}
-    <div class="col">
+    <div class="col" data-project-id="{{ project.pk }}">
         <div class="card rounded-bottom-4 shadow-sm" x-data="{ project_name: '{{ project.name }}', edit: false }">
             <div x-show.important="!edit" class="card-header d-flex text-bg-primary rounded-top" style="height: 56px;">
                 <h4 class="my-auto me-auto">
@@ -37,9 +37,12 @@
                     </div>
                 </form>
                 
-                <button type="button" class="btn btn-danger me-1">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
+                <form class="me-1" hx-delete="{% url 'workspace:delete_project' %}" hx-target="[data-project-id='{{ project.pk }}']" hx-swap="delete">
+                    <input type="hidden" name="project_id" value="{{ project.pk }}">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                </form>
 
                 <button type="button" class="btn btn-secondary" x-on:click="edit = false">
                     <i class="fa-solid fa-ban"></i>

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound, HttpResponseBadRequest, HttpResponse
 from ..models import Project
-from ..forms import AddProjectForm,EditProjectForm
+from ..forms import AddProjectForm, EditProjectForm, DeleteProjectForm
 from ..mixins import HtmxRequiredMixin
 
 
@@ -39,3 +39,17 @@ class EditProject(LoginRequiredMixin, HtmxRequiredMixin, View):
         
         return HttpResponseBadRequest('Bad request')
 
+
+class DeleteProject(LoginRequiredMixin, HtmxRequiredMixin, View):
+    def delete(self, request):
+        form = DeleteProjectForm(request.GET)
+        if form.is_valid():
+            project = Project.objects.filter(pk=form.cleaned_data['project_id'], created_by=request.user).first()
+            if not project:
+                return HttpResponseNotFound('Project not found')
+            
+            project.delete()
+
+            return HttpResponse('Project was deleted', status=200)
+        
+        return HttpResponseBadRequest('Bad request')
