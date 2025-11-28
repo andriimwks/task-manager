@@ -13,6 +13,7 @@ urlpatterns = [
     path('projects/<int:id>/delete', projects.DeleteProject.as_view(), name='delete_project'),
 
     path('projects/<int:project_id>/tasks/create', tasks.CreateTask.as_view(), name='create_task'),
+    path('projects/<int:project_id>/tasks/<int:task_id>/delete', tasks.DeleteTask.as_view(), name='delete_task'),
 
     path('partial/project-list', partials.ProjectList.as_view(), name='partial_project_list'),
     path('partial/task-list/<int:project_id>', partials.TaskList.as_view(), name='partial_task_list'),

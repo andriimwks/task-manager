@@ -1,5 +1,5 @@
 {% for task in tasks %}
-    <tr>
+    <tr data-task-id="{{ task.pk }}">
         <td>
             {% if task.priority == 0 %}
                 <span class="text-success">
@@ -42,7 +42,13 @@
 
             <div class="vr"></div>
 
-            <button type="button" class="btn btn-sm btn-link link-body-emphasis">
+            <button
+                type="button"
+                class="btn btn-sm btn-link text-danger"
+                hx-delete="{% url 'workspace:delete_task' task.project.pk task.pk %}"
+                hx-target="[data-task-id='{{ task.pk }}']"
+                hx-swap="delete"
+            >
                 <i class="fa-solid fa-trash-can"></i>
             </button>
         </td>
