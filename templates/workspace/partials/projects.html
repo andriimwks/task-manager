@@ -1,10 +1,28 @@
 {% for project in projects %}
     <div class="col">
-        <div class="card bg-body-tertiary rounded-bottom-4 shadow-sm">
-            <h4 class="card-header bg-primary text-light">
+        <div class="card rounded-bottom-4 shadow-sm">
+            <h4 class="card-header text-bg-primary">
                 <i class="fa-solid fa-calendar-days"></i> {{ project.name }}
             </h4>
-            <div class="card-body"></div>
+
+            {% comment %}
+                It was the easiest workaround I could think of.
+                Bootstrap places some weird margins/paddings between header and body,
+                but the second header works just like I want, so I'll stick to it. =)
+            {% endcomment %}
+            <div class="card-header">
+                <div class="input-group">
+                    <span class="input-group-text text-secondary">
+                        <i class="fa-solid fa-square-plus"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Start typing here to create a task...">
+                    <button type="button" class="btn btn-success">Add Task</button>
+                </div>
+            </div>
+
+            <div class="card-body">
+                
+            </div>
         </div>
     </div>
 {% endfor %}
