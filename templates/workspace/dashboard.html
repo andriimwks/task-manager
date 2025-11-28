@@ -10,7 +10,7 @@
 {% block content %}
     <div
         id="projects-container"
-        class="row row-cols-1 row-cols-lg-2 g-3 justify-content-lg-center"
+        class="row row-cols-1 row-cols-lg-2 g-3 justify-content-center"
         hx-get="{% url 'workspace:partial_project_list' %}" 
         hx-trigger="load"
         hx-swap="innerHTML"
