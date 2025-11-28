@@ -11,8 +11,26 @@
                 <h4 class="mb-3">
                     <i class="fa-solid fa-plus"></i> Add Project
                 </h4>
+
+                {% if form %}
+                <ul class="list-group list-group-flush border border-danger border-1 rounded mb-3">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li class="list-group-item">{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
                 <form hx-boost="true" action="" method="post">
-                    <input type="text" class="form-control mb-3" name="project_name" id="project_name" placeholder="Project name">
+                    <input
+                        type="text"
+                        class="form-control mb-3"
+                        id="project_name"
+                        name="project_name"
+                        value="{{ form.data.project_name }}"
+                        placeholder="Project name"
+                    >
                     <div class="text-end">
                         <button type="submit" class="btn btn-success fw-semibold">
                             <i class="fa-solid fa-floppy-disk"></i> Save
