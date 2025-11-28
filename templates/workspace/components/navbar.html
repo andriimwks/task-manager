@@ -1,6 +1,6 @@
 <nav class="navbar bg-body-tertiary shadow">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'workspace:dashboard' %}">Task Manager</a>
+        <a class="navbar-brand" href="{% url 'workspace:dashboard' %}" hx-boost="true">Task Manager</a>
         <div class="d-flex">
             {{ request.user.mask_email }}
         </div>
