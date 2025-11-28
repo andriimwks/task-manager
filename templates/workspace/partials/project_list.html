@@ -12,13 +12,23 @@
                 </div>
             </template>
 
-            <template x-if="edit">
+            <template x-if="edit" x-data="{ can_save: false }">
                 <div class="card-header d-flex" style="height: 56px;">
                     <form class="w-100 me-1" action="" method="post">
                         <input type="hidden" name="project_id" value="{{ project.pk }}">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="" name="" value="{{ project.name }}">
-                            <button type="button" class="btn btn-success">
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="project_name"
+                                name="project_name"
+                                value="{{ project.name }}"
+                                minlength="3"
+                                maxlength="255"
+                                required
+                                x-on:change="can_save = true"
+                            >
+                            <button type="button" class="btn btn-success" :disabled="can_save === false">
                                 <i class="fa-solid fa-floppy-disk"></i>
                             </button>
                         </div>

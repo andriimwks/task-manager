@@ -22,7 +22,7 @@
                 </ul>
                 {% endif %}
 
-                <form hx-boost="true" action="" method="post">
+                <form hx-boost="true" action="" method="post" x-data="{ can_save: false }">
                     <input
                         type="text"
                         class="form-control mb-3"
@@ -33,9 +33,10 @@
                         minlength="3"
                         maxlength="255"
                         required
+                        x-on:change="can_save = true"
                     >
                     <div class="text-end">
-                        <button type="submit" class="btn btn-success fw-semibold">
+                        <button type="submit" class="btn btn-success fw-semibold" :disabled="can_save === false">
                             <i class="fa-solid fa-floppy-disk"></i> Save
                         </button>
                     </div>
