@@ -1,7 +1,9 @@
 {% for project in projects %}
     <div class="col">
         <div class="card bg-body-tertiary rounded-bottom-4 shadow-sm">
-            <h4 class="card-header bg-primary text-light">{{ project.name }}</h4>
+            <h4 class="card-header bg-primary text-light">
+                <i class="fa-solid fa-calendar-days"></i> {{ project.name }}
+            </h4>
             <div class="card-body"></div>
         </div>
     </div>
