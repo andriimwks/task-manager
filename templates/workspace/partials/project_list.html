@@ -23,7 +23,6 @@
                             maxlength="255"
                             required
                             x-model="new_project_name"
-                            x-on:change="can_save = true"
                         >
                         <button
                             type="submit"
@@ -53,7 +52,7 @@
 
             <div class="card-header">
                 <form hx-post="{% url 'workspace:create_task' project.pk %}" hx-target="#tasks-container" hx-swap="innerHTML">
-                    <div class="input-group">
+                    <div class="input-group" x-data="{ task_name: '' }">
                         <span class="input-group-text text-secondary">
                             <i class="fa-solid fa-square-plus"></i>
                         </span>
@@ -66,8 +65,16 @@
                             minlength="3"
                             maxlength="255"
                             required
+                            x-model="task_name"
                         >
-                        <button type="submit" class="btn btn-success">Add Task</button>
+                        <button
+                            type="submit"
+                            class="btn btn-success"
+                            :disabled="task_name.length < 3 || task_name.length > 255"
+                            x-on:htmx:after-request.window="task_name = ''"
+                        >
+                            Add Task
+                        </button>
                     </div>
                 </form>
             </div>
