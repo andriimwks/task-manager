@@ -8,3 +8,11 @@ class ProjectAdmin(admin.ModelAdmin):
     list_filter = ('created_by',)
     search_fields = ('name',)
     ordering = ('created_by',)
+
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ('project', 'name', 'priority', 'completed', 'deadline')
+    list_filter = ('project', 'completed')
+    search_fields = ('name',)
+    ordering = ('project', 'priority')
