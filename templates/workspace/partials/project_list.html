@@ -1,3 +1,5 @@
+{% load static %}
+
 {% for project in projects %}
     <div class="col" data-project-id="{{ project.pk }}">
         <div class="card rounded-bottom-4 shadow-sm" x-data="{ project_name: '{{ project.name }}', edit: false }">
@@ -67,7 +69,13 @@
             </div>
 
             <div class="card-body">
-                
+                <div class="text-center htmx-indicator" id="tasks-loading-indicator">
+                    <img src="{% static 'svg/puff.svg' %}" alt="" style="width: 48px;">
+                </div>
+
+                <table class="table">
+                    <tbody id="tasks-container"></tbody>
+                </table>
             </div>
         </div>
     </div>
