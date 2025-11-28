@@ -1,0 +1,9 @@
+{% for task in tasks %}
+    <tr>
+        <td>
+            <input type="checkbox" name="" id="" {% if task.completed %} checked {% endif %}>
+        </td>
+        <td>{{ task.name }}</td>
+        <td></td>
+    </tr>
+{% endfor %}

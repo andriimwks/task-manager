@@ -68,13 +68,25 @@
                 </div>
             </div>
 
-            <div class="card-body">
-                <div class="text-center htmx-indicator" id="tasks-loading-indicator">
+            <div class="card-body p-0">
+                <!-- <div class="text-center htmx-indicator" id="tasks-loading-indicator">
                     <img src="{% static 'svg/puff.svg' %}" alt="" style="width: 48px;">
-                </div>
+                </div> -->
 
-                <table class="table">
-                    <tbody id="tasks-container"></tbody>
+                <table class="table table-borderless table-hover">
+                    <colgroup>
+                        <col style="width: 1%;">
+                        <col>
+                        <col style="width: 1%;">
+                    </colgroup>
+                    <tbody
+                        id="tasks-container"
+                        hx-get="{% url 'workspace:partial_task_list' project.pk %}" 
+                        hx-trigger="load"
+                        hx-swap="innerHTML"
+                        hx-indicator="#tasks-loading-indicator"
+                    >
+                    </tbody>
                 </table>
             </div>
         </div>

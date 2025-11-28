@@ -13,4 +13,5 @@ urlpatterns = [
     path('projects/<int:id>/delete', projects.DeleteProject.as_view(), name='delete_project'),
 
     path('partial/project-list', partials.ProjectList.as_view(), name='partial_project_list'),
+    path('partial/task-list/<int:project_id>', partials.TaskList.as_view(), name='partial_task_list'),
 ]
