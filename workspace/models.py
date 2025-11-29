@@ -32,7 +32,6 @@ class Task(models.Model):
     name = models.CharField('Name', max_length=255)
     priority = models.IntegerField('Priority', default=Priorities.NORMAL, choices=Priorities.choices)
     completed = models.BooleanField('Completed', default=False)
-    deadline = models.DateField('Deadline', null=True, blank=True)
 
     class Meta:
         ordering = ('-priority',)

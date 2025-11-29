@@ -12,7 +12,7 @@ class ProjectAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('project', 'name', 'priority', 'completed', 'deadline')
+    list_display = ('project', 'name', 'priority', 'completed')
     list_filter = ('project', 'completed')
     search_fields = ('name',)
     ordering = ('project', 'priority')
