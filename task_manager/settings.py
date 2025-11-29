@@ -162,6 +162,8 @@ AUTHENTICATION_BACKENDS = [
 
 # Allauth settings
 
+ACCOUNT_ADAPTER = "authentication.allauth.AccountAdapter"
+
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 ACCOUNT_SESSION_REMEMBER = True
