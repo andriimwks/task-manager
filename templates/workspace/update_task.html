@@ -51,10 +51,8 @@
                         </select>
                     </div>   
                     <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="completed" name="completed" value="">
-                        <label for="completed" class="form-check-label">
-                            Completed
-                        </label>
+                        <input type="checkbox" class="form-check-input" id="completed" name="completed" {% if task.completed %} checked {% endif %}>
+                        <label for="completed" class="form-check-label">Completed</label>
                     </div>
                     <div class="text-end">
                         <button type="submit" class="btn btn-success fw-semibold" :disabled="task_name.length < 3 || task_name.length > 255">

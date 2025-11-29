@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseNotFound, HttpResponseBadRequest, HttpResponse
 from ..models import Project, Task
-from ..forms import CreateTaskForm
+from ..forms import CreateTaskForm, UpdateTaskForm
 from ..mixins import HtmxRequiredMixin, ProjectRequiredMixin, TaskRequiredMixin
 
 
@@ -33,6 +33,28 @@ class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
                 'priority_choices': Task.Priorities.choices,
             },
         )
+    
+    def post(self, request):
+        form = UpdateTaskForm(request.POST)
+        if not form.is_valid():
+            print(request.POST)
+            return render(
+                request,
+                self.template_name,
+                {
+                    'form': form,
+                    'task': request.task,
+                    'priority_choices': Task.Priorities.choices,
+                },
+            )
+        
+        task = request.task
+        task.name = form.cleaned_data['task_name']
+        task.priority = form.cleaned_data['priority']
+        task.completed = form.cleaned_data['completed']
+        task.save()
+
+        return redirect('workspace:dashboard')
 
 
 class DeleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, View):

@@ -14,3 +14,10 @@ class UpdateProjectForm(forms.Form):
 class CreateTaskForm(forms.Form):
     """Form for creating a new task."""
     task_name = forms.CharField(max_length=255, min_length=3, required=True)
+
+
+class UpdateTaskForm(forms.Form):
+    """Form for editing an existing task."""
+    task_name = forms.CharField(max_length=255, min_length=3, required=True)
+    priority = forms.IntegerField(required=True)
+    completed = forms.BooleanField(required=False)
