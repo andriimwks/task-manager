@@ -17,13 +17,13 @@ class CreateProject(LoginRequiredMixin, View):
 
     def post(self, request):
         form = CreateProjectForm(request.POST)
-        if form.is_valid():
-            Project.objects.create(
-                name=form.cleaned_data["project_name"], created_by=request.user
-            )
-            return redirect("workspace:dashboard")
+        if not form.is_valid():
+            return render(request, self.template_name, {"form": form})
 
-        return render(request, self.template_name, {"form": form})
+        Project.objects.create(
+            name=form.cleaned_data["project_name"], created_by=request.user
+        )
+        return redirect("workspace:dashboard")
 
 
 class UpdateProject(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, View):
@@ -31,14 +31,14 @@ class UpdateProject(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin,
 
     def post(self, request):
         form = UpdateProjectForm(request.POST)
-        if form.is_valid():
-            project = request.project
-            project.name = form.cleaned_data["project_name"]
-            project.save()
+        if not form.is_valid():
+            return HttpResponseBadRequest("Bad request")
 
-            return HttpResponse("New project name was saved", status=200)
+        project = request.project
+        project.name = form.cleaned_data["project_name"]
+        project.save()
 
-        return HttpResponseBadRequest("Bad request")
+        return HttpResponse("New project name was saved", status=200)
 
 
 class DeleteProject(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, View):

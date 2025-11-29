@@ -39,7 +39,6 @@ class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
     def post(self, request):
         form = UpdateTaskForm(request.POST)
         if not form.is_valid():
-            print(request.POST)
             return render(
                 request,
                 self.template_name,
