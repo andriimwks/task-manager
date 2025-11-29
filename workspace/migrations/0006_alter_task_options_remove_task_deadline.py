@@ -4,18 +4,21 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0005_alter_task_priority'),
+        ("workspace", "0005_alter_task_priority"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='task',
-            options={'ordering': ('-priority',), 'verbose_name': 'Task', 'verbose_name_plural': 'Tasks'},
+            name="task",
+            options={
+                "ordering": ("-priority",),
+                "verbose_name": "Task",
+                "verbose_name_plural": "Tasks",
+            },
         ),
         migrations.RemoveField(
-            model_name='task',
-            name='deadline',
+            model_name="task",
+            name="deadline",
         ),
     ]

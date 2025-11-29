@@ -4,15 +4,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0003_task'),
+        ("workspace", "0003_task"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='task',
-            name='priority',
-            field=models.TextField(choices=[('low', 'Low'), ('normal', 'Normal'), ('high', 'High'), ('critical', 'Critical')], default='normal', verbose_name='Priority'),
+            model_name="task",
+            name="priority",
+            field=models.TextField(
+                choices=[
+                    ("low", "Low"),
+                    ("normal", "Normal"),
+                    ("high", "High"),
+                    ("critical", "Critical"),
+                ],
+                default="normal",
+                verbose_name="Priority",
+            ),
         ),
     ]

@@ -7,11 +7,11 @@ from .utils import mask_email
 class User(AbstractUser):
     """Minimal user model."""
 
-    username = None # We don't need it
-    email = models.EmailField('E-mail', unique=True)
+    username = None  # We don't need it
+    email = models.EmailField("E-mail", unique=True)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = [] # Django already treats email as required
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = []  # Django already treats email as required
 
     objects = UserManager()
 
@@ -20,5 +20,5 @@ class User(AbstractUser):
         return mask_email(self.email)
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        verbose_name = "User"
+        verbose_name_plural = "Users"

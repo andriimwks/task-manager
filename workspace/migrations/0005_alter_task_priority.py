@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0004_alter_task_priority'),
+        ("workspace", "0004_alter_task_priority"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='task',
-            name='priority',
-            field=models.IntegerField(choices=[(0, 'Low'), (1, 'Normal'), (2, 'High'), (3, 'Critical')], default=1, verbose_name='Priority'),
+            model_name="task",
+            name="priority",
+            field=models.IntegerField(
+                choices=[(0, "Low"), (1, "Normal"), (2, "High"), (3, "Critical")],
+                default=1,
+                verbose_name="Priority",
+            ),
         ),
     ]

@@ -3,4 +3,4 @@ from django.urls import reverse_lazy
 
 
 class RedirectToLoginPage(RedirectView):
-    url = reverse_lazy('account_login')
+    url = reverse_lazy("account_login")

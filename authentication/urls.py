@@ -3,5 +3,5 @@ from .views import RedirectToLoginPage
 
 
 urlpatterns = [
-    path('', RedirectToLoginPage.as_view()),
+    path("", RedirectToLoginPage.as_view()),
 ]
