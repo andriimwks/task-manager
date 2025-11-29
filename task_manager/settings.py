@@ -37,6 +37,8 @@ ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
+    # asgi
+    "daphne",
     # std
     "django.contrib.admin",
     "django.contrib.auth",
@@ -87,6 +89,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "task_manager.wsgi.application"
+
+ASGI_APPLICATION = "task_manager.asgi.application"
 
 
 # Database
