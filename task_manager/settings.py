@@ -98,8 +98,12 @@ ASGI_APPLICATION = "task_manager.asgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": getenv("MYSQL_DATABASE"),
+        "USER": "root",
+        "PASSWORD": getenv("MYSQL_ROOT_PASSWORD"),
+        "HOST": getenv("MYSQL_HOST"),
+        "PORT": "3306",
     }
 }
 
