@@ -1,0 +1,16 @@
+{% if messages %}
+    <section x-data="{ closed: false }">
+        <template x-if="!closed">
+            <div class="d-flex justify-content-between border border-1 rounded m-3">
+                <ul class="list-group list-group-flush">
+                    {% for message in messages %}
+                        <li class="list-group-item">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="btn btn-link text-decoration-none my-auto" x-on:click="closed = true">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+        </template>
+    </section>
+{% endif %}
