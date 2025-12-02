@@ -9,7 +9,11 @@ User = get_user_model()
 
 
 class AccountAdapter(DefaultAccountAdapter):
-    def send_password_reset_mail(self, user: User, email: str, context):
+    def send_mail(self, *args, **kwargs):
+        if not settings.DEBUG:
+            return super().send_mail(*args, **kwargs)
+
+    def send_password_reset_mail(self, user: User, email: str, context: dict):
         if settings.DEBUG:
             return messages.warning(
                 self.request,
