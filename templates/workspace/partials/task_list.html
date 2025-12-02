@@ -24,7 +24,15 @@
             {% endif %}
         </td>
         <td>
-            <input type="checkbox" name="" id="" {% if task.completed %} checked {% endif %}>
+            <input
+                type="checkbox" 
+                id="completed"
+                name="completed"
+                hx-post="{% url 'workspace:complete_task' task.pk %}"
+                hx-trigger="change delay:500ms"
+                hx-swap="none"
+                {% if task.completed %} checked {% endif %}
+            >
         </td>
         <td>
             {{ task.name }}
