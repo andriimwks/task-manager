@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "django_htmx",
+    "debug_toolbar",
     # apps
     "authentication",
     "workspace",
@@ -67,6 +68,7 @@ MIDDLEWARE = [
     # lib
     "allauth.account.middleware.AccountMiddleware",
     "django_htmx.middleware.HtmxMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "task_manager.urls"
@@ -188,3 +190,7 @@ LOGIN_URL = "account_login"
 LOGIN_REDIRECT_URL = "workspace:dashboard"
 
 LOGOUT_REDIRECT_URL = "account_login"
+
+
+# Additional configuration for Debug Toolbar
+INTERNAL_IPS = ["127.0.0.1"]
