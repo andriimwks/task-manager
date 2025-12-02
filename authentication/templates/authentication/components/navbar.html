@@ -1,0 +1,38 @@
+<nav class="navbar bg-body-tertiary shadow">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'account_login' %}">Task Manager</a>
+        <div class="d-flex">
+            {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
+                        <span class="d-none d-lg-inline">
+                            {{ request.user.mask_email }} <i class="fa-solid fa-caret-down"></i>
+                        </span>
+                        <span class="d-lg-none">
+                            <i class="fa-solid fa-bars-staggered"></i>
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'account_email' %}">
+                                <i class="fa-solid fa-envelope"></i> Change Email
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'account_change_password' %}">
+                                <i class="fa-solid fa-key"></i> Change Password
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'account_logout' %}">
+                                <i class="fa-solid fa-right-from-bracket"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+
+            {% endif %}
+        </div>
+    </div>
+</nav>
