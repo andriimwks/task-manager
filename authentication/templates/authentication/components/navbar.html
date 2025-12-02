@@ -31,7 +31,36 @@
                     </ul>
                 </div>
             {% else %}
+                {% comment %} Desktop navbar menu {% endcomment %}
+                <div class="d-none d-lg-flex">
+                    <a class="btn btn-primary me-2" href="{% url 'account_login' %}">
+                        <i class="fa-solid fa-right-to-bracket"></i> Sign In
+                    </a>
+                    <a class="btn btn-outline-primary" href="{% url 'account_signup' %}">
+                        <i class="fa-solid fa-user-plus"></i> Sign Up
+                    </a>
+                </div>
 
+                {% comment %} Mobile navbar menu {% endcomment %}
+                <div class="d-lg-none">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
+                            <i class="fa-solid fa-bars-staggered"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item" href="{% url 'account_login' %}">
+                                    <i class="fa-solid fa-right-to-bracket"></i> Sign In
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'account_signup' %}">
+                                    <i class="fa-solid fa-user-plus"></i> Sign Up
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>   
             {% endif %}
         </div>
     </div>
