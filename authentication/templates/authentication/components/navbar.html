@@ -1,6 +1,15 @@
 <nav class="navbar bg-body-tertiary shadow">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'account_login' %}">Task Manager</a>
+        <a 
+            class="navbar-brand"
+            {% if user.is_authenticated %}
+                href="{% url 'workspace:dashboard' %}"
+            {% else %}
+                href="{% url 'account_login' %}"
+            {% endif %}
+        >
+            Task Manager
+        </a>
         <div class="d-flex">
             {% if user.is_authenticated %}
                 <div class="dropdown">
