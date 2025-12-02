@@ -46,14 +46,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # lib
+    # apps
+    "authentication",
+    "workspace",
+    # libs
     "allauth",
     "allauth.account",
     "django_htmx",
     "debug_toolbar",
-    # apps
-    "authentication",
-    "workspace",
 ]
 
 MIDDLEWARE = [
@@ -76,9 +76,7 @@ ROOT_URLCONF = "task_manager.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [
-            BASE_DIR / "templates",
-        ],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
