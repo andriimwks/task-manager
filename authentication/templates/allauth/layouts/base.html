@@ -1,0 +1,22 @@
+{% load static %}
+{% load django_htmx %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block head_title %} {% endblock %} | {% block title %} Task Manager {% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    {% htmx_script %}
+</head>
+<body data-bs-theme="dark">
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>
