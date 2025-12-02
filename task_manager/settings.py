@@ -194,4 +194,10 @@ LOGOUT_REDIRECT_URL = "account_login"
 
 
 # Additional configuration for Debug Toolbar
+
 INTERNAL_IPS = ["127.0.0.1"]
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_COLLAPSED": True,
+    "ROOT_TAG_EXTRA_ATTRS": "hx-preserve",
+}
