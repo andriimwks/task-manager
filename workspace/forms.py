@@ -25,3 +25,9 @@ class UpdateTaskForm(forms.Form):
     task_name = forms.CharField(max_length=255, min_length=3, required=True)
     priority = forms.IntegerField(required=True)
     completed = forms.BooleanField(required=False)
+
+
+class CompleteTaskForm(forms.Form):
+    """Form for marking task is completed"""
+
+    completed = forms.BooleanField(required=True)

@@ -24,6 +24,11 @@ urlpatterns = [
         name="create_task",
     ),
     path("tasks/<int:task_id>/update", tasks.UpdateTask.as_view(), name="update_task"),
+    path(
+        "tasks/<int:task_id>/complete",
+        tasks.CompleteTask.as_view(),
+        name="complete_task",
+    ),
     path("tasks/<int:task_id>/delete", tasks.DeleteTask.as_view(), name="delete_task"),
     path(
         "partial/project-list",

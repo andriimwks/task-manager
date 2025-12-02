@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseBadRequest, HttpResponse
 from ..models import Task
-from ..forms import CreateTaskForm, UpdateTaskForm
+from ..forms import CreateTaskForm, UpdateTaskForm, CompleteTaskForm
 from ..mixins import HtmxRequiredMixin, ProjectRequiredMixin, TaskRequiredMixin
 
 
@@ -56,6 +56,20 @@ class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
         task.save()
 
         return redirect("workspace:dashboard")
+
+
+class CompleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, View):
+    """todo"""
+
+    def post(self, request):
+        form = CompleteTaskForm(request.POST)
+        if not form.is_valid():
+            return HttpResponseBadRequest("Bad request")
+
+        request.task.completed = True
+        request.task.save()
+
+        return HttpResponse("Task was completed", status=200)
 
 
 class DeleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, View):
