@@ -54,10 +54,13 @@
                         <input type="checkbox" class="form-check-input" id="completed" name="completed" {% if task.completed %} checked {% endif %}>
                         <label for="completed" class="form-check-label">Completed</label>
                     </div>
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-success fw-semibold" :disabled="task_name.length < 3 || task_name.length > 255">
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-success flex-fill fw-semibold me-2" :disabled="task_name.length < 3 || task_name.length > 255">
                             <i class="fa-solid fa-floppy-disk"></i> Save
                         </button>
+                        <a class="btn btn-danger" href="{% url 'workspace:dashboard' %}">
+                            <i class="fa-solid fa-ban"></i> Cancel
+                        </a>
                     </div>
                 </form>
             </div>
