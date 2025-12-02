@@ -24,7 +24,15 @@
         {% include 'authentication/components/navbar.html' %}
     {% endblock %}
 
-    {% block content %}
-    {% endblock content %}
+    <main class="container mt-3">
+        <div class="row justify-content-lg-center">
+            <div class="col-12 col-lg-6">
+                <div class="border rounded-3 shadow-lg p-3 mx-sm-1">
+                    {% include 'authentication/components/messages.html' %}
+                    {% block content %} {% endblock %}
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

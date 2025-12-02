@@ -1,0 +1,7 @@
+{% if messages %}
+    <ul class="list-group list-group-flush border border-1 rounded mb-3">
+        {% for message in messages %}
+            <li class="list-group-item">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
