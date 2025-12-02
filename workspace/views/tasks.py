@@ -66,8 +66,9 @@ class CompleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, Vie
         if not form.is_valid():
             return HttpResponseBadRequest("Bad request")
 
-        request.task.completed = True
-        request.task.save()
+        task = request.task
+        task.completed = form.cleaned_data["completed"]
+        task.save()
 
         return HttpResponse("Task was completed", status=200)
 

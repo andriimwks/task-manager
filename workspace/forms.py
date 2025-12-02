@@ -30,4 +30,4 @@ class UpdateTaskForm(forms.Form):
 class CompleteTaskForm(forms.Form):
     """Form for marking task is completed"""
 
-    completed = forms.BooleanField(required=True)
+    completed = forms.BooleanField(required=False)
