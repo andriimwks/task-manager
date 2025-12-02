@@ -24,17 +24,17 @@ class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
 
     template_name = "workspace/update_task.html"
 
-    def get(self, request):
+    def get(self, request, task: Task):
         return render(
             request,
             self.template_name,
             {
-                "task": request.task,
+                "task": task,
                 "priority_choices": Task.Priorities.choices,
             },
         )
 
-    def post(self, request):
+    def post(self, request, task: Task):
         form = UpdateTaskForm(request.POST)
         if not form.is_valid():
             return render(
@@ -42,12 +42,11 @@ class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
                 self.template_name,
                 {
                     "form": form,
-                    "task": request.task,
+                    "task": task,
                     "priority_choices": Task.Priorities.choices,
                 },
             )
 
-        task = request.task
         task.name = form.cleaned_data["task_name"]
         task.priority = form.cleaned_data["priority"]
         task.completed = form.cleaned_data["completed"]
@@ -59,12 +58,11 @@ class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
 class CompleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, View):
     """todo"""
 
-    def post(self, request):
+    def post(self, request, task: Task):
         form = CompleteTaskForm(request.POST)
         if not form.is_valid():
             return HttpResponseBadRequest("Bad request")
 
-        task = request.task
         task.completed = form.cleaned_data["completed"]
         task.save()
 
@@ -74,6 +72,6 @@ class CompleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, Vie
 class DeleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, View):
     """Deletes the specified task."""
 
-    def delete(self, request):
-        request.task.delete()
+    def delete(self, request, task: Task):
+        task.delete()
         return HttpResponse("Task was deleted", status=200)

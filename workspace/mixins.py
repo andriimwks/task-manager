@@ -41,7 +41,7 @@ class TaskRequiredMixin:
         if not task:
             return HttpResponseBadRequest("Task not found")
 
-        setattr(request, "task", task)
+        kwargs["task"] = task
         del kwargs["task_id"]
 
         return super().dispatch(request, *args, **kwargs)
