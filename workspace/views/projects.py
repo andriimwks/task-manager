@@ -29,12 +29,11 @@ class CreateProject(LoginRequiredMixin, View):
 class UpdateProject(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, View):
     """Handles editing an existing project's name via HTMX."""
 
-    def post(self, request):
+    def post(self, request, project: Project):
         form = UpdateProjectForm(request.POST)
         if not form.is_valid():
             return HttpResponseBadRequest("Bad request")
 
-        project = request.project
         project.name = form.cleaned_data["project_name"]
         project.save()
 
@@ -44,6 +43,6 @@ class UpdateProject(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin,
 class DeleteProject(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, View):
     """Handles deletion of a project via HTMX."""
 
-    def delete(self, request):
-        request.project.delete()
+    def delete(self, request, project: Project):
+        project.delete()
         return HttpResponse("Project was deleted", status=200)

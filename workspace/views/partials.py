@@ -1,6 +1,7 @@
 from django.views import View
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from ..models import Project
 from ..mixins import HtmxRequiredMixin, ProjectRequiredMixin
 
 
@@ -20,7 +21,5 @@ class TaskList(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, View
 
     template_name = "workspace/partials/task_list.html"
 
-    def get(self, request):
-        return render(
-            request, self.template_name, {"tasks": request.project.tasks.all()}
-        )
+    def get(self, request, project: Project):
+        return render(request, self.template_name, {"tasks": project.tasks.all()})

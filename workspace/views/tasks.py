@@ -2,7 +2,7 @@ from django.views import View
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseBadRequest, HttpResponse
-from ..models import Task
+from ..models import Project, Task
 from ..forms import CreateTaskForm, UpdateTaskForm, CompleteTaskForm
 from ..mixins import HtmxRequiredMixin, ProjectRequiredMixin, TaskRequiredMixin
 
@@ -10,15 +10,13 @@ from ..mixins import HtmxRequiredMixin, ProjectRequiredMixin, TaskRequiredMixin
 class CreateTask(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, View):
     """Creates a new task within the specified project."""
 
-    def post(self, request):
+    def post(self, request, project: Project):
         form = CreateTaskForm(request.POST)
         if not form.is_valid():
             return HttpResponseBadRequest("Bad request")
 
-        Task.objects.create(
-            name=form.cleaned_data["task_name"], project=request.project
-        )
-        return redirect("workspace:partial_task_list", project_id=request.project.pk)
+        Task.objects.create(name=form.cleaned_data["task_name"], project=project)
+        return redirect("workspace:partial_task_list", project_id=project.pk)
 
 
 class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):

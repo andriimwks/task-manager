@@ -23,7 +23,7 @@ class ProjectRequiredMixin:
         if not project:
             return HttpResponseBadRequest("Project not found")
 
-        setattr(request, "project", project)
+        kwargs["project"] = project
         del kwargs["project_id"]
 
         return super().dispatch(request, *args, **kwargs)
