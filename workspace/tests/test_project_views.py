@@ -19,7 +19,8 @@ class ProjectViewsTests(TestCase):
 
     def test_create_project(self):
         response = self.client.post(
-            reverse("workspace:create_project"), {"name": "Test"}
+            reverse("workspace:create_project"),
+            {"name": "Test"},
         )
         self.assertEqual(response.status_code, 302)
         self.assertTrue(Project.objects.filter(name="Test").exists())

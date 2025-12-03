@@ -45,6 +45,7 @@ class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
                     "task": task,
                     "priority_choices": Task.Priorities.choices,
                 },
+                status=400,
             )
 
         task.name = form.cleaned_data["name"]
