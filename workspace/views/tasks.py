@@ -49,6 +49,7 @@ class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
 
         task.name = form.cleaned_data["task_name"]
         task.priority = form.cleaned_data["priority"]
+        task.deadline = form.cleaned_data["deadline"]
         task.completed = form.cleaned_data["completed"]
         task.save()
 
