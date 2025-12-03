@@ -35,6 +35,7 @@ class Task(models.Model):
     priority = models.IntegerField(
         "Priority", default=Priorities.NORMAL, choices=Priorities.choices
     )
+    deadline = models.DateField("Deadline", null=True, blank=True)
     completed = models.BooleanField("Completed", default=False)
 
     class Meta:
