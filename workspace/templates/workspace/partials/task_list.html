@@ -1,26 +1,32 @@
 {% for task in tasks %}
     <tr data-task-id="{{ task.pk }}">
         <td>
-            {% if task.priority == 0 %}
+            {% if task.completed %}
                 <span class="text-success">
-                    <i class="fa-solid fa-angle-down"></i>
-                </span>
-            {% elif task.priority == 1 %}
-                <span class="text-primary">
-                    <i class="fa-solid fa-minus"></i>
-                </span>
-            {% elif task.priority == 2 %}
-                <span class="text-warning">
-                    <i class="fa-solid fa-angle-up"></i>
-                </span>
-            {% elif task.priority == 3 %}
-                <span class="text-danger">
-                    <i class="fa-solid fa-angles-up"></i>
+                    <i class="fa-solid fa-check-double"></i>
                 </span>
             {% else %}
-                <span class="text-secondary">
-                    <i class="fa-solid fa-question"></i>
-                </span>
+                {% if task.priority == 0 %}
+                    <span class="text-secondary">
+                        <i class="fa-solid fa-angle-down"></i>
+                    </span>
+                {% elif task.priority == 1 %}
+                    <span class="text-primary">
+                        <i class="fa-solid fa-minus"></i>
+                    </span>
+                {% elif task.priority == 2 %}
+                    <span class="text-warning">
+                        <i class="fa-solid fa-angle-up"></i>
+                    </span>
+                {% elif task.priority == 3 %}
+                    <span class="text-danger">
+                        <i class="fa-solid fa-angles-up"></i>
+                    </span>
+                {% else %}
+                    <span class="text-secondary">
+                        <i class="fa-solid fa-question"></i>
+                    </span>
+                {% endif %}
             {% endif %}
         </td>
         <td>
