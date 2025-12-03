@@ -1,15 +1,43 @@
 services:
   mysql:
     container_name: mysql
-    image: mysql:9.4.0
     restart: always
+    image: mysql:9.4.0
+    env_file:
+      - .env
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - mysql_data:/var/lib/mysql
-    env_file:
-      - .env
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+
+  django:
+    container_name: django
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    working_dir: /app
+    env_file:
+      - .env
+    environment:
+      DJANGO_DEBUG: 0
+    command: bash -c "
+        python3 manage.py migrate &&
+        daphne -b 0.0.0.0 -p 8000 task_manager.asgi:application
+      "
+    volumes:
+      - django_static:/app/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
 
 volumes:
   mysql_data:
+  django_static:
