@@ -40,7 +40,11 @@ class Task(models.Model):
     completed = models.BooleanField("Completed", default=False)
 
     def is_overdue(self) -> bool:
-        return self.deadline and self.deadline <= timezone.now().date()
+        return (
+            self.deadline
+            and not self.completed
+            and self.deadline <= timezone.now().date()
+        )
 
     def days_remaining(self) -> int:
         return (

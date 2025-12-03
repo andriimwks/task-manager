@@ -36,7 +36,7 @@
         </td>
         <td>
             <span class="fw-semibold">{{ task.name }}</span>
-            {% if task.deadline %}
+            {% if task.deadline and not task.completed %}
                 <small class="d-block {% if task.is_overdue %} text-danger {% endif %}">
                     <i class="fa-solid fa-alarm-clock"></i>
                     {{ task.deadline|date:'d.m.Y' }}
