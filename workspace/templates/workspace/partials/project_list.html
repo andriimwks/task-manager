@@ -51,7 +51,7 @@
             </div>
 
             <div class="card-header">
-                <form hx-post="{% url 'workspace:create_task' project.pk %}" hx-target="#tasks-container-{{ project.pk }}" hx-swap="innerHTML">
+                <form hx-post="{% url 'workspace:create_task' project.pk %}" hx-target="#task-container-{{ project.pk }}" hx-swap="innerHTML">
                     <div class="input-group" x-data="{ task_name: '' }">
                         <span class="input-group-text text-secondary">
                             <i class="fa-solid fa-square-plus"></i>
@@ -94,7 +94,7 @@
                         <col style="width: 1%;">
                     </colgroup>
                     <tbody
-                        id="tasks-container-{{ project.pk }}"
+                        id="task-container-{{ project.pk }}"
                         hx-get="{% url 'workspace:partial_task_list' project.pk %}" 
                         hx-trigger="load"
                         hx-swap="innerHTML"

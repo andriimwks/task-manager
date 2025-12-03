@@ -35,8 +35,9 @@
                 id="completed"
                 name="completed"
                 hx-post="{% url 'workspace:complete_task' task.pk %}"
+                hx-target="#task-container-{{ task.project.pk }}"
                 hx-trigger="change delay:100ms"
-                hx-swap="none"
+                hx-swap="innerHTML"
                 {% if task.completed %} checked {% endif %}
             >
         </td>

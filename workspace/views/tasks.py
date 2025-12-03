@@ -67,7 +67,7 @@ class CompleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, Vie
         task.completed = form.cleaned_data["completed"]
         task.save()
 
-        return HttpResponse("Task was completed", status=200)
+        return redirect("workspace:partial_task_list", project_id=task.project.pk)
 
 
 class DeleteTask(LoginRequiredMixin, HtmxRequiredMixin, TaskRequiredMixin, View):
