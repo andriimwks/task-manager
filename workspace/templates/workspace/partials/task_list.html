@@ -39,7 +39,8 @@
             {% if task.deadline %}
                 <small class="d-block {% if task.is_overdue %} text-danger {% endif %}">
                     <i class="fa-solid fa-alarm-clock"></i>
-                    {{ task.deadline|date:'d.m.Y' }} ({{ task.days_remaining }} day{{ task.days_remaining|pluralize }} left)
+                    {{ task.deadline|date:'d.m.Y' }}
+                    <span class="d-none d-lg-inline">({{ task.days_remaining }} day{{ task.days_remaining|pluralize }} left)</span>
                 </small>
             {% endif %}
         </td>
