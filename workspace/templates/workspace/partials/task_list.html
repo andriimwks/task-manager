@@ -1,5 +1,5 @@
 {% for task in tasks %}
-    <tr data-task-id="{{ task.pk }}">
+    <tr class="animate__animated animate__zoomIn animate__faster" data-task-id="{{ task.pk }}">
         <td>
             {% if task.completed %}
                 <span class="text-success">
