@@ -1,5 +1,5 @@
 {% for project in projects %}
-    <div class="col" data-project-id="{{ project.pk }}">
+    <div class="col animate__animated animate__backInUp animate__faster" data-project-id="{{ project.pk }}">
         <div class="card rounded-bottom-4 shadow-sm" x-data="{ project_name: '{{ project.name }}', edit: false }">
             <div x-show.important="!edit" class="card-header d-flex text-bg-primary rounded-top" style="height: 56px;">
                 <h4 class="my-auto me-auto">
