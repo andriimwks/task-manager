@@ -36,11 +36,15 @@
     ```console
     ./manage.py migrate
     ```
-6. Create a (super)user account:
+6. Run tests:
+    ```console
+    ./manage.py test
+    ```
+7. Create a superuser account:
     ```console
     ./manage.py createsuperuser
     ```
-7. Start development server:
+8. Start development server:
     ```console
     ./manage.py runserver
     ```
