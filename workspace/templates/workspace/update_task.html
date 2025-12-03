@@ -16,7 +16,7 @@
                     <ul class="list-group list-group-flush border border-danger border-1 rounded mb-3">
                         {% for field in form %}
                             {% for error in field.errors %}
-                                <li class="list-group-item">{{ error }}</li>
+                                <li class="list-group-item">{{ field.label }}: {{ error }}</li>
                             {% endfor %}
                         {% endfor %}
                     </ul>
