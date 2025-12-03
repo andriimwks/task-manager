@@ -1,5 +1,8 @@
 # Task Manager
-A simple task manager, powered by Django + HTMX + Alpine.js.
+<div align="center">
+    <img src="./screenshot.png" alt="Screenshot">
+    <p>A simple task manager, powered by Django + HTMX + Alpine.js.</p>
+</div>
 
 ## Prerequisites
 - Unix-like OS (Linux, MacOS, *BSD)
