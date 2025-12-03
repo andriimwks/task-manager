@@ -20,9 +20,7 @@ class CreateProject(LoginRequiredMixin, View):
         if not form.is_valid():
             return render(request, self.template_name, {"form": form})
 
-        Project.objects.create(
-            name=form.cleaned_data["project_name"], created_by=request.user
-        )
+        Project.objects.create(name=form.cleaned_data["name"], created_by=request.user)
         return redirect("workspace:dashboard")
 
 
@@ -34,7 +32,7 @@ class UpdateProject(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin,
         if not form.is_valid():
             return HttpResponseBadRequest("Bad request")
 
-        project.name = form.cleaned_data["project_name"]
+        project.name = form.cleaned_data["name"]
         project.save()
 
         return HttpResponse("New project name was saved", status=200)
