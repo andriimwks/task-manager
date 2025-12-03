@@ -11,9 +11,9 @@
                 </a>
             </div>
 
-            <div x-show.important="edit" class="card-header d-flex" style="height: 56px;">
+            <div x-show.important="edit" class="card-header d-flex" style="height: 56px;" x-data="{ new_project_name: project_name }">
                 <form class="w-100 me-1" hx-post="{% url 'workspace:update_project' project.pk %}" hx-swap="none">
-                    <div class="input-group" x-data="{ new_project_name: project_name }">
+                    <div class="input-group">
                         <input
                             type="text"
                             class="form-control"
@@ -45,7 +45,7 @@
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
 
-                <button type="button" class="btn btn-secondary" x-on:click="edit = false">
+                <button type="button" class="btn btn-secondary" x-on:click="new_project_name = project_name; edit = false">
                     <i class="fa-solid fa-ban"></i>
                 </button>
             </div>
