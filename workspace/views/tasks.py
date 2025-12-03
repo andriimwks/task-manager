@@ -15,7 +15,7 @@ class CreateTask(LoginRequiredMixin, HtmxRequiredMixin, ProjectRequiredMixin, Vi
         if not form.is_valid():
             return HttpResponseBadRequest("Bad request")
 
-        Task.objects.create(name=form.cleaned_data["task_name"], project=project)
+        Task.objects.create(name=form.cleaned_data["name"], project=project)
         return redirect("workspace:partial_task_list", project_id=project.pk)
 
 
@@ -47,7 +47,7 @@ class UpdateTask(LoginRequiredMixin, TaskRequiredMixin, View):
                 },
             )
 
-        task.name = form.cleaned_data["task_name"]
+        task.name = form.cleaned_data["name"]
         task.priority = form.cleaned_data["priority"]
         task.deadline = form.cleaned_data["deadline"]
         task.completed = form.cleaned_data["completed"]
