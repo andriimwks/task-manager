@@ -1,6 +1,6 @@
 {% for task in tasks %}
     <tr data-task-id="{{ task.pk }}">
-        <td>
+        <td class="align-middle">
             {% if task.priority == 0 %}
                 <span class="text-success">
                     <i class="fa-solid fa-angle-down"></i>
@@ -23,7 +23,7 @@
                 </span>
             {% endif %}
         </td>
-        <td>
+        <td class="align-middle">
             <input
                 type="checkbox" 
                 id="completed"
@@ -34,25 +34,32 @@
                 {% if task.completed %} checked {% endif %}
             >
         </td>
-        <td>
-            {{ task.name }}
+        <td class="align-middle">
+            <span class="fw-semibold">{{ task.name }}</span>
+            {% if task.deadline %}
+                <small class="d-block">
+                    <i class="fa-solid fa-alarm-clock"></i> {{ task.deadline }}
+                </small>
+            {% endif %}
         </td>
-        <td class="d-flex">
-            <a class="btn btn-sm btn-link link-body-emphasis" href="{% url 'workspace:update_task' task.pk %}" hx-boost="true">
-                <i class="fa-solid fa-pen"></i>
-            </a>
+        <td class="align-middle">
+            <div class="d-flex">
+                <a class="btn btn-sm btn-link link-body-emphasis" href="{% url 'workspace:update_task' task.pk %}" hx-boost="true">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
 
-            <div class="vr"></div>
+                <div class="vr"></div>
 
-            <button
-                type="button"
-                class="btn btn-sm btn-link text-danger"
-                hx-delete="{% url 'workspace:delete_task' task.pk %}"
-                hx-target="[data-task-id='{{ task.pk }}']"
-                hx-swap="delete"
-            >
-                <i class="fa-solid fa-trash-can"></i>
-            </button>
+                <button
+                    type="button"
+                    class="btn btn-sm btn-link text-danger"
+                    hx-delete="{% url 'workspace:delete_task' task.pk %}"
+                    hx-target="[data-task-id='{{ task.pk }}']"
+                    hx-swap="delete"
+                >
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
         </td>
     </tr>
 {% endfor %}
