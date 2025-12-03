@@ -37,7 +37,7 @@
         <td class="align-middle">
             <span class="fw-semibold">{{ task.name }}</span>
             {% if task.deadline %}
-                <small class="d-block">
+                <small class="d-block {% if task.deadline <= current_date.date %} text-danger {% endif %}">
                     <i class="fa-solid fa-alarm-clock"></i> {{ task.deadline }}
                 </small>
             {% endif %}
@@ -45,7 +45,7 @@
         <td class="align-middle">
             <div class="d-flex">
                 <a class="btn btn-sm btn-link link-body-emphasis" href="{% url 'workspace:update_task' task.pk %}" hx-boost="true">
-                    <i class="fa-solid fa-pen"></i>
+                    <i class="fa-solid fa-pen-to-square"></i>
                 </a>
 
                 <div class="vr"></div>
