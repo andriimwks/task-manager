@@ -52,6 +52,6 @@ class Task(models.Model):
         )
 
     class Meta:
-        ordering = ("-priority",)
+        ordering = ("completed", "-priority")
         verbose_name = "Task"
         verbose_name_plural = "Tasks"
