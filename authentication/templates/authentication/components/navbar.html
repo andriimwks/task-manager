@@ -15,7 +15,7 @@
                 <div class="dropdown">
                     <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
                         <span class="d-none d-lg-inline">
-                            {{ request.user.mask_email }} <i class="fa-solid fa-caret-down"></i>
+                            {{ request.user.get_masked_email }} <i class="fa-solid fa-caret-down"></i>
                         </span>
                         <span class="d-lg-none">
                             <i class="fa-solid fa-bars-staggered"></i>

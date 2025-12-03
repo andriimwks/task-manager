@@ -15,7 +15,7 @@ class User(AbstractUser):
 
     objects = UserManager()
 
-    def mask_email(self) -> str:
+    def get_masked_email(self) -> str:
         """Returns a string with a partially censored local part of user's email address."""
         return mask_email(self.email)
 
