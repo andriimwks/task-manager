@@ -29,17 +29,23 @@
                 {% endif %}
             {% endif %}
         </td>
-        <td>
+        <td x-data="{ loading: false }">
             <input
-                type="checkbox" 
+                x-show.important="!loading"
+                type="checkbox"
+                class="form-check-input"
                 id="completed"
                 name="completed"
+                x-on:change="loading = true"
                 hx-post="{% url 'workspace:complete_task' task.pk %}"
                 hx-target="#task-container-{{ task.project.pk }}"
-                hx-trigger="change delay:100ms"
+                hx-trigger="change delay:250ms"
                 hx-swap="innerHTML"
                 {% if task.completed %} checked {% endif %}
             >
+            <span x-show.important="loading">
+                <i class="fa-solid fa-spinner"></i>
+            </span>
         </td>
         <td>
             <span class="fw-semibold">{{ task.name }}</span>
