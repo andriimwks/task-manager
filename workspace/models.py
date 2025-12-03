@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 
 
 User = get_user_model()
@@ -37,6 +38,14 @@ class Task(models.Model):
     )
     deadline = models.DateField("Deadline", null=True, blank=True)
     completed = models.BooleanField("Completed", default=False)
+
+    def is_overdue(self) -> bool:
+        return self.deadline and self.deadline <= timezone.now().date()
+
+    def days_remaining(self) -> int:
+        return (
+            max((self.deadline - timezone.now().date()).days, 0) if self.deadline else 0
+        )
 
     class Meta:
         ordering = ("-priority",)

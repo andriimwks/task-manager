@@ -1,6 +1,6 @@
 {% for task in tasks %}
     <tr data-task-id="{{ task.pk }}">
-        <td class="align-middle">
+        <td>
             {% if task.priority == 0 %}
                 <span class="text-success">
                     <i class="fa-solid fa-angle-down"></i>
@@ -23,7 +23,7 @@
                 </span>
             {% endif %}
         </td>
-        <td class="align-middle">
+        <td>
             <input
                 type="checkbox" 
                 id="completed"
@@ -34,15 +34,16 @@
                 {% if task.completed %} checked {% endif %}
             >
         </td>
-        <td class="align-middle">
+        <td>
             <span class="fw-semibold">{{ task.name }}</span>
             {% if task.deadline %}
-                <small class="d-block {% if task.deadline <= current_date.date %} text-danger {% endif %}">
-                    <i class="fa-solid fa-alarm-clock"></i> {{ task.deadline }}
+                <small class="d-block {% if task.is_overdue %} text-danger {% endif %}">
+                    <i class="fa-solid fa-alarm-clock"></i>
+                    {{ task.deadline|date:'d.m.Y' }} ({{ task.days_remaining }} day{{ task.days_remaining|pluralize }} left)
                 </small>
             {% endif %}
         </td>
-        <td class="align-middle">
+        <td>
             <div class="d-flex">
                 <a class="btn btn-sm btn-link link-body-emphasis" href="{% url 'workspace:update_task' task.pk %}" hx-boost="true">
                     <i class="fa-solid fa-pen-to-square"></i>
