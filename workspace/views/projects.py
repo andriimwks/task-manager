@@ -18,7 +18,7 @@ class CreateProject(LoginRequiredMixin, View):
     def post(self, request):
         form = CreateProjectForm(request.POST)
         if not form.is_valid():
-            return render(request, self.template_name, {"form": form})
+            return render(request, self.template_name, {"form": form}, status=400)
 
         Project.objects.create(name=form.cleaned_data["name"], created_by=request.user)
         return redirect("workspace:dashboard")

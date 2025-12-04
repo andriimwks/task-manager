@@ -17,13 +17,20 @@ class ProjectViewsTests(TestCase):
     # Create project
     #
 
-    def test_create_project(self):
+    def test_create_project_valid(self):
         response = self.client.post(
             reverse("workspace:create_project"),
-            {"name": "Test"},
+            {"name": "Test Project 2"},
         )
         self.assertEqual(response.status_code, 302)
-        self.assertTrue(Project.objects.filter(name="Test").exists())
+        self.assertTrue(Project.objects.filter(name="Test Project 2").exists())
+
+    def test_create_project_invalid(self):
+        response = self.client.post(
+            reverse("workspace:create_project"),
+            {"name": ""},
+        )
+        self.assertEqual(response.status_code, 400)
 
     #
     # Update project
