@@ -5,7 +5,6 @@
 </div>
 
 ## Prerequisites
-- Unix-like OS (Linux, MacOS, *BSD)
 - Python 3.13
 - MySQL driver libraries
 - Podman or Docker
