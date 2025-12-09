@@ -203,3 +203,10 @@ DEBUG_TOOLBAR_CONFIG = {
     "SHOW_COLLAPSED": True,
     "ROOT_TAG_EXTRA_ATTRS": "hx-preserve",
 }
+
+
+# Silenced warnings
+
+SILENCED_SYSTEM_CHECKS = [
+    "models.W036",
+]
