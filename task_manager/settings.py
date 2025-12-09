@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Load environment variables from .env file
-load_dotenv(BASE_DIR / ".env")
+load_dotenv(BASE_DIR / ".env.local")
 
 
 # SECURITY WARNING: keep the secret key used in production secret!

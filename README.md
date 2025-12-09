@@ -24,7 +24,7 @@ Both tools are fully compatible for this project. You can replace `podman-compos
     ```console
     python3 -m pip install -r requirements.txt
     ```
-3. Configure environment variables:
+3. Create `.env.local` file and configure environment variables:
     ```env
     DJANGO_DEBUG=1
     DJANGO_SECRET="<secret>"
@@ -55,7 +55,7 @@ Both tools are fully compatible for this project. You can replace `podman-compos
     ```
 
 ## Running the App in Containers
-1. Configure environment variables:
+1. Create `.env.prod` file and configure environment variables:
     ```env
     DJANGO_DEBUG=0
     DJANGO_SECRET="<secret>"
