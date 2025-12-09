@@ -28,28 +28,36 @@ Both tools are fully compatible for this project. You can replace `podman-compos
     ```env
     DJANGO_DEBUG=1
     DJANGO_SECRET="<secret>"
-    DATABASE_HOST="postgresql"
+    DATABASE_HOST="127.0.0.1"
     POSTGRES_DB="task_manager"
     POSTGRES_USER="<username>"
     POSTGRES_PASSWORD="<password>"
     ```
-4. Start PostgreSQL in a container:
+4. Create `.env.prod` file and configure environment variables:
+    > PostgreSQL service loads .env.prod file to get its database configuration.
+    > We need this file even in local development to specify database name, user, and password for the container.
+    ```env
+    POSTGRES_DB="task_manager"
+    POSTGRES_USER="<username>"
+    POSTGRES_PASSWORD="<password>"
+    ```
+5. Start PostgreSQL in a container:
     ```console
     podman-compose up postgresql
     ```
-5. Run database migrations:
+6. Run database migrations:
     ```console
     python3 manage.py migrate
     ```
-6. Run tests:
+7. Run tests:
     ```console
     python3 manage.py test
     ```
-7. Create a superuser account:
+8. Create a superuser account:
     ```console
     python3 manage.py createsuperuser
     ```
-8. Start development server:
+9. Start development server:
     ```console
     python3 manage.py runserver
     ```
