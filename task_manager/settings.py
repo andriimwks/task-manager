@@ -106,12 +106,12 @@ ASGI_APPLICATION = "task_manager.asgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": getenv("MYSQL_DATABASE"),
-        "USER": "root",
-        "PASSWORD": getenv("MYSQL_ROOT_PASSWORD"),
-        "HOST": getenv("MYSQL_HOST"),
-        "PORT": "3306",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": getenv("POSTGRES_DB"),
+        "USER": getenv("POSTGRES_USER"),
+        "PASSWORD": getenv("POSTGRES_PASSWORD"),
+        "HOST": getenv("DATABASE_HOST"),
+        "PORT": "5432",
     }
 }
 

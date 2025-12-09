@@ -6,7 +6,6 @@
 
 ## Prerequisites
 - Python 3.13
-- MySQL driver libraries
 - Podman or Docker
 
 ## Note for Windows users
@@ -29,9 +28,10 @@ Both tools are fully compatible for this project. You can replace `podman-compos
     ```env
     DJANGO_DEBUG=1
     DJANGO_SECRET="<secret>"
-    MYSQL_DATABASE="task_manager"
-    MYSQL_HOST="127.0.0.1"
-    MYSQL_ROOT_PASSWORD="<password>"
+    DATABASE_HOST="postgresql"
+    POSTGRES_DB="task_manager"
+    POSTGRES_USER="<username>"
+    POSTGRES_PASSWORD="<password>"
     ```
 4. Start MySQL in a container:
     ```console
@@ -59,17 +59,12 @@ Both tools are fully compatible for this project. You can replace `podman-compos
     ```env
     DJANGO_DEBUG=0
     DJANGO_SECRET="<secret>"
-    MYSQL_DATABASE="task_manager"
-    MYSQL_HOST="mysql"
-    MYSQL_ROOT_PASSWORD="<password>"
+    DATABASE_HOST="postgresql"
+    POSTGRES_DB="task_manager"
+    POSTGRES_USER="<username>"
+    POSTGRES_PASSWORD="<password>"
     ```
 2. Launch all services:
-    > On the first build, Django may start before MySQL is fully ready. <br>
-    > To avoid this, start MySQL service first:
-    > ```console
-    > podman-compose up -d mysql # or `docker compose`
-    > ```
-
     ```console
     podman-compose up
     ```

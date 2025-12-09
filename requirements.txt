@@ -31,6 +31,8 @@ packaging==25.0
 pathspec==0.12.1
 platformdirs==4.5.0
 pre_commit==4.5.0
+psycopg==3.3.2
+psycopg-binary==3.3.2
 py-ubjson==0.16.1
 pyasn1==0.6.1
 pyasn1_modules==0.4.2
