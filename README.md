@@ -33,9 +33,9 @@ Both tools are fully compatible for this project. You can replace `podman-compos
     POSTGRES_USER="<username>"
     POSTGRES_PASSWORD="<password>"
     ```
-4. Start MySQL in a container:
+4. Start PostgreSQL in a container:
     ```console
-    podman-compose up mysql
+    podman-compose up postgresql
     ```
 5. Run database migrations:
     ```console
