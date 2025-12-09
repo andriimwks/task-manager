@@ -64,6 +64,12 @@ Both tools are fully compatible for this project. You can replace `podman-compos
     MYSQL_ROOT_PASSWORD="<password>"
     ```
 2. Launch all services:
+    > On the first build, Django may start before MySQL is fully ready. <br>
+    > To avoid this, start MySQL service first:
+    > ```console
+    > podman-compose up -d mysql # or `docker compose`
+    > ```
+
     ```console
     podman-compose up
     ```
