@@ -9,6 +9,12 @@
 - MySQL driver libraries
 - Podman or Docker
 
+## Note for Windows users
+Use `.\.venv\Scripts\activate` instead of `source ./.venv/bin/activate`, and use `python` instead of `python3` when running Django or installing packages.
+
+## Note for Docker users
+Both tools are fully compatible for this project. You can replace `podman-compose` with `docker compose` and everything will run the same way.
+
 ## Local Development Setup
 1. Create and activate virtual environment:
     ```console
@@ -33,19 +39,19 @@
     ```
 5. Run database migrations:
     ```console
-    ./manage.py migrate
+    python3 manage.py migrate
     ```
 6. Run tests:
     ```console
-    ./manage.py test
+    python3 manage.py test
     ```
 7. Create a superuser account:
     ```console
-    ./manage.py createsuperuser
+    python3 manage.py createsuperuser
     ```
 8. Start development server:
     ```console
-    ./manage.py runserver
+    python3 manage.py runserver
     ```
 
 ## Running the App in Containers
@@ -60,4 +66,8 @@
 2. Launch all services:
     ```console
     podman-compose up
+    ```
+    ...or...
+    ```console
+    docker compose up
     ```
